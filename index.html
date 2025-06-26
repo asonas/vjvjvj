@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VJ App</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    #waveform-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 3;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    #canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 2;
+    }
+    #controls {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      border-radius: 5px;
+    }
+    button {
+      background: #333;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      margin: 5px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #555;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="waveform-bg"></canvas>
+  <canvas id="canvas"></canvas>
+  <div id="controls" style="display: none;">
+    <button id="startBtn">オーディオ開始</button>
+    <div id="status">クリックしてマイクを許可してください</div>
+  </div>
+  <canvas id="oscilloscope" width="300" height="150" style="position: fixed; bottom: 200px; left: 20px; z-index: 100; background: rgba(0,0,0,0); border: none; opacity: 0;"></canvas>
+  <div id="dj-info" style="position: fixed; top: 20px; left: 20px; z-index: 100; display: flex; align-items: center; background: rgba(0,0,0,0.8); padding: 25px; border-radius: 15px;">
+    <img id="dj-icon" src="players/てらお.jpg" alt="DJ Icon" style="width: 80px; height: 80px; border-radius: 50%; margin-right: 20px; border: 3px solid #fff;">
+    <div style="color: white;">
+      <div style="font-size: 18px; opacity: 0.9;">DJing</div>
+      <div id="dj-name" style="font-size: 28px; font-weight: bold;">てらお</div>
+    </div>
+  </div>
+  <img id="eyecatch" src="images/eyecatch.png" alt="Eyecatch" style="position: fixed; top: 20px; right: 20px; z-index: 100; max-width: 300px; height: auto; opacity: 0.7;">
+  <div id="debug" style="position: fixed; bottom: 20px; left: 20px; z-index: 100; color: white; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 5px; font-family: monospace; font-size: 12px; max-width: 400px;">
+    <div>デバッグ情報:</div>
+    <div id="audioDevice">オーディオデバイス: 未取得</div>
+    <div id="audioContext">AudioContext: 未初期化</div>
+    <div id="volume">音量: 0</div>
+    <div id="fftSize">FFTサイズ: 未設定</div>
+    <div id="sampleRate">サンプルレート: 未設定</div>
+    <div id="bpm">BPM: 未検出</div>
+    <div id="waveform">波形: 監視中</div>
+    <div id="currentPattern">パターン: 初期化中</div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
